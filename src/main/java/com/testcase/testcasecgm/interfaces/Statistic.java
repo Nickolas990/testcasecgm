@@ -1,2 +1,4 @@
-package com.testcase.testcasecgm.interfaces;public interface Statistic {
+package com.testcase.testcasecgm.interfaces;
+
+public interface Statistic {
 }

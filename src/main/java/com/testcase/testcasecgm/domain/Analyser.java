@@ -1,10 +1,15 @@
 package com.testcase.testcasecgm.domain;
 
-import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
-public class Statistics<T> {
-    private T value;
+import java.util.HashMap;
+import java.util.Map;
 
-    private List<Long> countStatistics;
-    private List<Long>
+
+@Getter
+@Setter
+public class Analyser {
+
+    private Map<Character, Value> values = new HashMap<>();
 }
