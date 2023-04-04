@@ -24,7 +24,7 @@ public class AnalysingService {
     public Analyser analysing(String string) {
         Analyser analyser = new Analyser();
         Long chains = 1L;
-        Character prevChar = 0;
+        char prevChar = 0;
 
         for (int i = 0; i < string.length(); i++) {
             Value value;
@@ -51,7 +51,12 @@ public class AnalysingService {
 
             prevChar = string.charAt(i);
         }
+        countGlobalStatistics(analyser, string);
 
+        return analyser;
+    }
+
+    private void countGlobalStatistics(Analyser analyser, String string) {
         ConcurrentHashMap <Character, CharStats> stats = applicationStatistics.getStats();
         for (Map.Entry<Character, Value> entry : analyser.getValues().entrySet()) {
             CharStats charStats;
@@ -68,7 +73,6 @@ public class AnalysingService {
                 charStats.setAverageChain((charStats.getSumOfChains()/charStats.getCount()));
             }
         }
-        return analyser;
     }
 
     public ApplicationStatistics getApplicationStatistics() {
