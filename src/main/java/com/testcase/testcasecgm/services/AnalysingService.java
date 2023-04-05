@@ -16,9 +16,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class AnalysingService {
 
-    private ApplicationStatistics applicationStatistics;
+    private final ApplicationStatistics applicationStatistics;
 
-    private Mapper<ApplicationStatistics, ApplicationStatisticsDTO> mapper;
+    private final Mapper<ApplicationStatistics, ApplicationStatisticsDTO> mapper;
 
     @Autowired
     public AnalysingService(ApplicationStatistics applicationStatistics, Mapper<ApplicationStatistics, ApplicationStatisticsDTO> mapper) {
