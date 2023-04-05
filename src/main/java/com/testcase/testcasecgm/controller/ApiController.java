@@ -2,7 +2,7 @@ package com.testcase.testcasecgm.controller;
 
 
 import com.testcase.testcasecgm.domain.Analyser;
-import com.testcase.testcasecgm.domain.ApplicationStatistics;
+import com.testcase.testcasecgm.dto.ApplicationStatisticsDTO;
 import com.testcase.testcasecgm.services.AnalysingService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -27,7 +27,7 @@ public class ApiController {
     }
 
     @GetMapping(value = "/statistics", produces = MediaType.APPLICATION_JSON_VALUE)
-    public ApplicationStatistics statistics () {
+    public ApplicationStatisticsDTO statistics () {
         return analysingService.getApplicationStatistics();
     }
 }

@@ -12,7 +12,5 @@ import java.util.concurrent.ConcurrentHashMap;
 @Getter
 @Setter
 public class ApplicationStatistics {
-
-
     private ConcurrentHashMap<Character, CharStats> stats = new ConcurrentHashMap<>();
 }

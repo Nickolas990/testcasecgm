@@ -5,6 +5,8 @@ import com.testcase.testcasecgm.domain.Analyser;
 import com.testcase.testcasecgm.domain.ApplicationStatistics;
 import com.testcase.testcasecgm.domain.CharStats;
 import com.testcase.testcasecgm.domain.Value;
+import com.testcase.testcasecgm.dto.ApplicationStatisticsDTO;
+import com.testcase.testcasecgm.interfaces.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,14 @@ import java.util.concurrent.ConcurrentHashMap;
 @Service
 public class AnalysingService {
 
-    ApplicationStatistics applicationStatistics;
+    private ApplicationStatistics applicationStatistics;
+
+    private Mapper<ApplicationStatistics, ApplicationStatisticsDTO> mapper;
 
     @Autowired
-    public AnalysingService(ApplicationStatistics applicationStatistics) {
+    public AnalysingService(ApplicationStatistics applicationStatistics, Mapper<ApplicationStatistics, ApplicationStatisticsDTO> mapper) {
         this.applicationStatistics = applicationStatistics;
+        this.mapper = mapper;
     }
 
     public Analyser analysing(String string) {
@@ -69,14 +74,15 @@ public class AnalysingService {
                 charStats.setSumOfChains(charStats.getSumOfChains() + value.getChains());
                 charStats.setSumOfLengths(charStats.getSumOfLengths() + string.length());
                 charStats.setCount(charStats.getCount() + 1);
-                charStats.setAverageLength((charStats.getSumOfLengths() /charStats.getCount()));
-                charStats.setAverageChain((charStats.getSumOfChains()/charStats.getCount()));
+                charStats.setAverageChain(charStats.getSumOfChains()/charStats.getCount());
+                charStats.setAverageLength(charStats.getSumOfLengths()/charStats.getCount());
             }
         }
     }
 
-    public ApplicationStatistics getApplicationStatistics() {
-        return applicationStatistics;
+    public ApplicationStatisticsDTO getApplicationStatistics() {
+
+        return mapper.toDto(applicationStatistics);
     }
 
 
